@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         IMAGE = 'daves125125/ci-sample-service-go'
+        DOCKER_LOGIN = credentials('docker-registry-login')
     }
 
     stages {
@@ -27,6 +28,7 @@ pipeline {
                 script {
                     def HASH = sh returnStdout: true, script: 'git rev-parse HEAD'
                     sh """
+                        docker login -u ${DOCKER_LOGIN_USR} -p ${DOCKER_LOGIN_PSW}
                         docker build -t ${IMAGE} .
                         docker tag ${IMAGE} ${IMAGE}:${HASH}
                         docker push ${IMAGE}:${HASH}
