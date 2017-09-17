@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE = 'daves125125/ci-sample-service-go'
         DOCKER_LOGIN = credentials('docker-registry-login')
-        GOPATH = '$WORKSPACE'
+        GOPATH = 'env.WORKSPACE'
     }
 
     stages {
