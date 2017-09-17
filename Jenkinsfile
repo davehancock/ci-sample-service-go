@@ -12,7 +12,7 @@ pipeline {
             agent { docker 'golang:1.9' }
             steps {
                 sh 'go get -u github.com/golang/dep/cmd/dep'
-                sh 'go ensure'
+                sh 'dep ensure'
                 sh 'env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
         }
