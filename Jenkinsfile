@@ -13,7 +13,7 @@ pipeline {
             agent { docker 'golang:1.9' }
             steps {
                 sh 'echo $WORKSPACE'
-                GOPATH = $WORKSPACE
+                sh 'GOPATH = $WORKSPACE'
                 sh 'echo $GOPATH'
                 sh 'go get -u github.com/golang/dep/cmd/dep'
                 sh 'dep ensure'
