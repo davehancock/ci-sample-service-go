@@ -4,6 +4,7 @@ pipeline {
     environment {
         IMAGE = 'daves125125/ci-sample-service-go'
         DOCKER_LOGIN = credentials('docker-registry-login')
+        GOPATH = /go
     }
 
     stages {
@@ -12,6 +13,7 @@ pipeline {
             agent { docker 'golang:1.9' }
             steps {
                 sh 'echo $WORKSPACE'
+                GOPATH = $WORKSPACE
                 sh 'echo $GOPATH'
                 sh 'go get -u github.com/golang/dep/cmd/dep'
                 sh 'dep ensure'
