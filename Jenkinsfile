@@ -16,8 +16,8 @@ pipeline {
             steps {
                 sh 'echo $WORKSPACE'
                 sh 'echo $GOPATH'
-                sh 'go get -u github.com/golang/dep/cmd/dep'
-                sh 'dep status'
+                sh 'go get -u github.com/golang/dep/cmd/dep && dep status'
+                sh 'wget https://github.com/golang/dep/releases/download/v0.3.0/dep-linux-386.zip'
                 sh 'dep ensure'
                 sh 'env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
