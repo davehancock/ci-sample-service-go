@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             agent { docker 'golang:1.9' }
             steps {
-                echo GOPATH
+                sh 'echo $GOPATH'
                 echo WORKSPACE
                 sh 'ln -s $WORKSPACE $GOPATH'
 
