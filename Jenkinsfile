@@ -13,7 +13,8 @@ pipeline {
             steps {
                 sh 'echo $GOPATH'
                 echo WORKSPACE
-                sh 'ln -s $WORKSPACE ${GOPATH}/src'
+                sh 'ln -s $WORKSPACE ${GOPATH}/src/github.com/'
+                sh 'ls -ltra ${GOPATH}/src/github.com/'
 
                 sh """
                     wget https://github.com/golang/dep/releases/download/v0.3.0/dep-linux-386.zip
