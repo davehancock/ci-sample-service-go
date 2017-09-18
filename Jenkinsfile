@@ -16,12 +16,14 @@ pipeline {
                 sh 'mkdir -p ${GOPATH}/src/github.com/ci-sample-service-go && ln -s $WORKSPACE ${GOPATH}/src/github.com/ci-sample-service-go'
                 sh 'ls -ltra ${GOPATH}/src/github.com/'
 
-                sh """
-                    wget https://github.com/golang/dep/releases/download/v0.3.0/dep-linux-386.zip
-                    gunzip -S .zip -c dep-linux-386.zip > ./dep && chmod 755 dep
-                """
+                //sh """
+                //    wget https://github.com/golang/dep/releases/download/v0.3.0/dep-linux-386.zip
+                //    gunzip -S .zip -c dep-linux-386.zip > ./dep && chmod 755 dep
+                //"""
 
+                sh 'go get -u github.com/golang/dep/cmd/dep'
                 sh 'cd /go/src/github.com/ci-sample-service-go && ./dep ensure'
+
                 sh 'env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
         }
