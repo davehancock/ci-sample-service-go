@@ -21,7 +21,7 @@ pipeline {
                     gunzip -S .zip -c dep-linux-386.zip > ./dep && chmod 755 dep
                 """
 
-                sh './dep ensure ${GOPATH}/src/github.com/ci-sample-service-go'
+                sh 'cd /go/src/github.com/ci-sample-service-go && ./dep ensure'
                 sh 'env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
         }
