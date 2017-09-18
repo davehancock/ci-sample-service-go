@@ -22,7 +22,7 @@ pipeline {
                 //"""
 
                 sh 'go get -u github.com/golang/dep/cmd/dep'
-                sh 'cd /go/src/github.com/ci-sample-service-go && ./dep ensure'
+                sh 'cd /go/src/github.com/ci-sample-service-go && dep ensure'
 
                 sh 'env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
