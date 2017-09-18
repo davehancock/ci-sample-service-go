@@ -14,8 +14,8 @@ pipeline {
                 GOPATH = "${WORKSPACE}"
             }
             steps {
-                echo $GOPATH
-                echo $WORKSPACE
+                echo GOPATH
+                echo WORKSPACE
                 sh 'ln -s $WORKSPACE $GOPATH'
 
                 sh """
