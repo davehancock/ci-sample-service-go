@@ -10,9 +10,6 @@ pipeline {
 
         stage('Build') {
             agent { docker 'golang:1.9' }
-            environment {
-                GOPATH = "${WORKSPACE}"
-            }
             steps {
                 echo GOPATH
                 echo WORKSPACE
