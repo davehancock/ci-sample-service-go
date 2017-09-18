@@ -20,7 +20,8 @@ pipeline {
                     wget https://github.com/golang/dep/releases/download/v0.3.0/dep-linux-386.zip
                     gunzip -S .zip -c dep-linux-386.zip > ./dep && chmod 755 dep
                 """
-                sh './dep ensure'
+
+                sh './dep ensure ${GOPATH}/src/github.com/ci-sample-service-go'
                 sh 'env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
         }
