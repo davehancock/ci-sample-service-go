@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'echo $GOPATH'
                 echo WORKSPACE
-                sh 'ln -s $WORKSPACE ${GOPATH}/src/github.com/'
+                sh 'mkdir -p ${GOPATH}/src/github.com/ci-sample-service-go && ln -s $WORKSPACE ${GOPATH}/src/github.com/ci-sample-service-go'
                 sh 'ls -ltra ${GOPATH}/src/github.com/'
 
                 sh """
