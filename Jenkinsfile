@@ -14,6 +14,10 @@ pipeline {
                 GOPATH = "${WORKSPACE}"
             }
             steps {
+                echo $GOPATH
+                echo $WORKSPACE
+                sh 'ln -s $WORKSPACE $GOPATH'
+
                 sh """
                     wget https://github.com/golang/dep/releases/download/v0.3.0/dep-linux-386.zip
                     gunzip -S .zip -c dep-linux-386.zip > ./dep && chmod 755 dep
