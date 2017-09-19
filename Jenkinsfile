@@ -17,7 +17,7 @@ pipeline {
                 sh 'mkdir -p ${APP_PATH} && ln -s ${WORKSPACE} ${APP_PATH}'
 
                 sh 'go get -u github.com/golang/dep/cmd/dep'
-                sh 'ls -ltra && dep ensure'
+                sh 'cd ${APP_PATH} && ls -ltra && dep ensure'
 
                 sh 'cd ${APP_PATH} && env GOOS=linux GOARCH=386 go build -o ci-sample-service-go'
             }
