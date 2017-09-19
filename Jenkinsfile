@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             agent { docker 'golang:1.9' }
             steps {
-                sh 'mkdir -p ${GOPATH}/src/github.com/ci-sample-service-go && ln -s . ${GOPATH}/src/github.com/ci-sample-service-go'
+                sh 'mkdir -p ${GOPATH}/src/github.com/ && ln -s . ${GOPATH}/src/github.com/ci-sample-service-go'
                 sh 'ls -ltra ${GOPATH}/src/github.com/ci-sample-service-go'
 
                 sh 'go get -u github.com/golang/dep/cmd/dep'
