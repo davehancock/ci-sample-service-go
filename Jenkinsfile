@@ -14,7 +14,7 @@ pipeline {
                 APP_PATH = "foo"
             }
             steps {
-                sh 'APP_PATH = "${GOPATH}/src/github/ci-sample-service-go"'
+                script { def APP_PATH = "${GOPATH}/src/github/ci-sample-service-go" }
                 sh 'mkdir -p ${APP_PATH} && ln -s ${WORKSPACE} ${APP_PATH}'
 
                 sh 'go get -u github.com/golang/dep/cmd/dep'
