@@ -11,7 +11,8 @@ pipeline {
         stage('Build') {
             agent { docker 'golang:1.9' }
             steps {
-                sh 'mkdir -p ${GOPATH}/src/github.com/ci-sample-service-go && cp -R . ${GOPATH}/src/github.com/ci-sample-service-go'
+                sh 'mkdir -p ${GOPATH}/src/github.com/ci-sample-service-go && ln -s . ${GOPATH}/src/github.com/ci-sample-service-go'
+                sh 'ls -ltra ${GOPATH}/src/github.com/ci-sample-service-go'
 
                 sh 'go get -u github.com/golang/dep/cmd/dep'
                 sh 'cd /go/src/github.com/ci-sample-service-go && ls -ltra && dep ensure'
@@ -39,6 +40,7 @@ pipeline {
                         docker push ${IMAGE}:${HASH}
                     """
                 }
+                // FIXME put in post section
                 deleteDir()
             }
         }
