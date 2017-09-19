@@ -10,8 +10,11 @@ pipeline {
 
         stage('Build') {
             agent { docker 'golang:1.9' }
+            environment {
+                APP_PATH = foo
+            }
             steps {
-                def APP_PATH = "${GOPATH}/src/github/ci-sample-service-go"
+                sh 'APP_PATH = "${GOPATH}/src/github/ci-sample-service-go"'
                 sh 'mkdir -p ${APP_PATH} && ln -s ${WORKSPACE} ${APP_PATH}'
 
                 sh 'go get -u github.com/golang/dep/cmd/dep'
